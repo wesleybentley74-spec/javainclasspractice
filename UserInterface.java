@@ -1,16 +1,4 @@
-/*
-Wesley Bentley
-CIST 211
-Doctor G
-Purpose of the assignment is to increase OOP and readability
-
-First I am going to change a bunch of the code into methods to make it more readable.
-Then I am going to create a UserInterface class to handle all user input and output.
-Finally I am going to create a Calculator class to handle all the math operations.
-With each I will move the methods to their respective classes.
- */
-
-
+//The user interface code
 
 // Importing the Scanner class for user input
 import java.util.Scanner;
@@ -102,36 +90,22 @@ public class UserInterface {
         System.out.println("\nBye!"); // Goodbye message
     }
     
-    // Method to start the user interface and handle user interactions
-    public void start() {
-        displayWelcome(); // Show the welcome message
-        boolean running = true; // Flag to control the program loop
+    // Method to get the user's menu choice
+    public int getMenuChoice() {
+        System.out.print("Choose (1-5): "); // Prompt the user to choose an option
         
-        // Main loop to keep the program running
-        while (running) {
-            displayMenu(); // Display the calculator menu
-            System.out.print("Choose (1-5): "); // Prompt the user to choose an option
-            
-            // Validate that the input is an integer
-            if (!scanner.hasNextInt()) {
-                System.out.println("Invalid input. Please enter a number between 1 and 7.");
-                scanner.nextLine(); // consume invalid input
-                continue;
-            }
-            
-            int choice = scanner.nextInt(); // Get the user's choice
-            
-            // Handle the user's choice
-            if (choice == 5) {
-                running = false; // Exit the loop if the user chooses to exit
-            } else if (choice >= 1 && choice <= 4) {
-                performOperation(choice); // Perform the selected operation
-            } else {
-                System.out.println("Invalid choice. Please select a number between 1 and 5.");
-            }
+        // Validate that the input is an integer
+        if (!scanner.hasNextInt()) {
+            System.out.println("Invalid input. Please enter a number between 1 and 5.");
+            scanner.nextLine(); // consume invalid input
+            return -1; // Return -1 to indicate invalid input
         }
         
-        displayGoodbye(); // Show the goodbye message
-        scanner.close(); // Close the scanner
+        return scanner.nextInt(); // Get and return the user's choice
+    }
+    
+    // Method to close the scanner
+    public void close() {
+        scanner.close();
     }
 }
