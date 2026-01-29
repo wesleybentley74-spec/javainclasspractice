@@ -1,3 +1,17 @@
+/*
+Wesley Bentley
+CIST 211
+Doctor G
+Purpose of the assignment is to increase OOP and readability
+
+First I am going to change a bunch of the code into methods to make it more readable.
+Then I am going to create a UserInterface class to handle all user input and output.
+Finally I am going to create a Calculator class to handle all the math operations.
+With each I will move the methods to their respective classes.
+ */
+
+
+
 // Importing the Scanner class for user input
 import java.util.Scanner;
 
@@ -13,7 +27,7 @@ public class UserInterface {
     }
     
     // Method to display the calculator menu
-    private void displayMenu() {
+    public void displayMenu() {
         System.out.println("\n--- Calculator Menu ---"); 
         System.out.println("1. Add"); 
         System.out.println("2. Subtract");
@@ -24,7 +38,7 @@ public class UserInterface {
     }
     
     // Method to prompt the user for a number with a custom message
-    private double getNumber(String prompt) {
+    public double getNumber(String prompt) {
         System.out.print(prompt); 
         while (!scanner.hasNextDouble()) { 
             System.out.print("Invalid input. Try again: "); 
@@ -33,14 +47,14 @@ public class UserInterface {
         return scanner.nextDouble(); 
     }
     
-    // Method to perform the selected arithmetic operation
-    private void performOperation(int choice) {
+    // Method to perform the selected math operation
+    public void performOperation(int choice) {
         try {
             // Get the numbers from the user
             double num1 = getNumber("First number: ");
             double num2 = getNumber("Second number: ");
-            double result = 0; // Variable to store the result
-            String operationName = ""; // Variable to store the operation name
+            double result = 0; 
+            String operationName = ""; 
             
             // Switch case to handle the selected operation
             switch (choice) {
@@ -68,23 +82,23 @@ public class UserInterface {
             // Display the result of the operation
             displayResult(num1, num2, result, operationName);
         } catch (IllegalArgumentException e) {
-            // Handle any illegal argument exceptions (e.g., division by zero)
+            // Handle any illegal argument exceptions 
             System.out.println("Error: " + e.getMessage());
         }
     }
     
     // Method to display the result of an arithmetic operation
-    private void displayResult(double num1, double num2, double result, String operationName) {
+    public void displayResult(double num1, double num2, double result, String operationName) {
         System.out.println("\nResult: " + result); // Display the result
     }
     
     // Method to display the welcome message
-    private void displayWelcome() {
+    public void displayWelcome() {
         System.out.println("\nWelcome to Calculator!"); // Welcome message
     }
     
     // Method to display the goodbye message
-    private void displayGoodbye() {
+    public void displayGoodbye() {
         System.out.println("\nBye!"); // Goodbye message
     }
     
