@@ -1,0 +1,9 @@
+public class Main {
+    public static void main(String[] args) {
+        BankServer myBank = new BankServer();
+        ATM localAtm = new ATM(myBank);
+
+        // Interaction sequence
+        localAtm.startWithdrawal(1234, 100.00);
+    }
+}

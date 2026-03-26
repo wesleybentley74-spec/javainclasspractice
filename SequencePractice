@@ -1,0 +1,45 @@
+public class BankServer {
+    private double balance = 500.00;
+    private final int correctPin = 1234;
+
+    public boolean verifyPIN(int pin) {
+        return pin == correctPin;
+    }
+
+    public boolean requestFunds(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+}
+
+public class ATM {
+    private BankServer server;
+
+    public ATM(BankServer server) {
+        this.server = server;
+    }
+
+    public void startWithdrawal(int pin, double amount) {
+        System.out.println("Step 1: Verifying PIN...");
+        
+        if (server.verifyPIN(pin)) {
+            System.out.println("Step 2: Requesting $" + amount);
+            
+            if (server.requestFunds(amount)) {
+                dispenseCash(amount);
+            } else {
+                System.out.println("Error: Insufficient Funds.");
+            }
+        } else {
+            System.out.println("Error: Invalid PIN.");
+        }
+    }
+
+    private void dispenseCash(double amount) {
+        System.out.println("Final Step: Dispensing $" + amount + ". Please take your cash.");
+    }
+}
+
