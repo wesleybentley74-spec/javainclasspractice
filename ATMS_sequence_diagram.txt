@@ -1,0 +1,22 @@
+Sequence Diagram: ATM Withdrawal
+
+User -> ATM : startWithdrawal(pin, amount)
+ATM -> BankServer : verifyPIN(pin)
+BankServer --> ATM : true/false
+PIN valid
+    ATM -> BankServer : requestFunds(amount)
+    BankServer --> ATM : true/false
+    funds available
+        ATM -> ATM : dispenseCash(amount)
+        ATM --> User : success message
+    else insufficient funds
+        ATM --> User : error message (insufficient funds)
+    end
+else PIN invalid
+    ATM --> User : error message (invalid PIN)
+end
+
+
+BankServer maintains state (balance and correct PIN)
+ATM controls flow and output messages
+This diagram maps directly to ATM.startWithdrawal steps
